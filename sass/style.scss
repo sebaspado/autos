@@ -1,0 +1,247 @@
+    @import 'reset';
+    @import 'icons';
+    @import 'fonts';
+    @import 'dropdown';
+    $breakpoints: ( xs: 0, sm: 576px, md: 768px, lg: 1080px);
+    @mixin media-down ($breakpoint) {
+        @media screen and (max-width: map-get($breakpoints, $breakpoint)) {
+            @content;
+        }
+    }
+    
+    @mixin flex($dis, $dir, $just, $align) {
+        display: $dis;
+        flex-flow: $dir;
+        justify-content: $just;
+        align-items: $align;
+    }
+    
+    $bg: #ecf0f1;
+    $text-color-prin: #545454;
+    $text-color-sec: #e7e7e7;
+    $red:#d30029;
+    body {
+        font-family: Rubik-Regular;
+        background: $bg;
+        font-size: 15px;
+        p {
+            color: $text-color-prin;
+            font-family: Rubik-Regular;
+        }
+    }
+    
+    .container {
+        @include flex(flex, row, space-between, center);
+        @include media-down(lg) {
+            width: 100%;
+            padding: 1em;
+        }
+        margin: auto;
+        width: 1080px;
+    }
+    
+    .white-wrapper {
+        background: #fff;
+        border-radius: 5px;
+        margin: 10px auto;
+        box-shadow: 0px 0px 5px #ddd;
+        width: 100%;
+        padding: 15px 30px;
+    }
+    
+    .filters {
+        .filter {
+            color: #d30029;
+            font-weight: 600;
+            font-size: 15px;
+        }
+        @include media-down(lg) {
+            @include flex(flex, column, space-between, flex-start);
+        }
+        @include flex(flex, row, space-between, center);
+        .select {
+            @include flex(flex, row, space-between, center);
+            .filter {
+                margin-right: 30px;
+            }
+        }
+        .filter-col {
+            &:first-child div {
+                @include media-down(lg) {
+                    margin-bottom: 10px;
+                }
+                margin-bottom: 0
+            }
+            div {
+                margin-bottom: 10px;
+            }
+            @include flex(flex, column, space-between, flex-start);
+            select {
+                background: #f5f5f5;
+                width: 150px;
+                height: 54px;
+            }
+            input {
+                margin-right: 10px;
+            }
+        }
+    }
+    
+    .article-header {
+        h3 {
+            color: $red;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        @include media-down(md) {
+            @include flex(flex, column, space-between, center);
+            text-align: center;
+            div {
+                margin: 10px 0;
+                p {
+                    margin: 5px 0
+                }
+            }
+        }
+        @include flex(flex, row, space-between, center);
+        img {
+            width: 345px;
+        }
+        button {
+            background-color: $red;
+            color: #fff;
+            padding: 15px 20px;
+            border-radius: 10px;
+            border-bottom: 2px solid #8d213b;
+            text-shadow: -1px 0 1px #666;
+            display: flex;
+            align-items: center;
+            &:hover,
+            &:focus,
+            &:active {
+                background: #404040;
+                border-bottom: 2px solid #404040;
+                color: #fff;
+            }
+            &:hover svg {
+                fill: #fff;
+            }
+        }
+    }
+    
+    .article-data {
+        h4 {
+            color: #bbbbbb;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        @include media-down(lg) {
+            @include flex(flex, column, space-between, center);
+        }
+        @include flex(flex, row, flex-start, flex-start);
+        .characteristics {
+            @include media-down(lg) {
+                width: 100%;
+            }
+            width: 40%;
+            p {
+                @include media-down(lg) {
+                    display: inline-block;
+                    margin-right: 20px;
+                }
+                margin: 20px 0;
+                display: flex;
+                align-items: center;
+                font-size: 15px;
+            }
+        }
+        .rates {
+            @include media-down(lg) {
+                width: 100%;
+            }
+            width: 60%;
+            ul li {
+                width: 100%;
+                @include flex(flex, row, space-between, center);
+                border-bottom: 1px solid $text-color-sec;
+                padding: 25px 0;
+                &:first-child {
+                    padding-top: 0;
+                }
+                &:last-child {
+                    border: none;
+                }
+                .model {
+                    color: $text-color-prin;
+                    input {
+                        margin-right: 10px
+                    }
+                }
+                .inclusions a {
+                    color: $red
+                }
+                .price {
+                    color: $red;
+                    font-weight: bold;
+                    font-size: 18px;
+                    span {
+                        font-weight: 500;
+                        font-size: 15px;
+                    }
+                }
+            }
+        }
+    }
+    
+    .open-modal {
+        background-color: #5cf9d2;
+        border: none;
+        border-radius: 4px;
+        color: #fff;
+        outline: none;
+        padding: 20px 40px;
+        text-transform: uppercase;
+        &:hover {
+            background-color: #bff2e5
+        }
+    }
+    
+    .modal {
+        background-color: #fff;
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 400px;
+        margin-left: -200px;
+        margin-top: -150px;
+        padding: 30px 50px;
+        border-radius: 5px;
+        z-index: 10;
+        box-shadow: 0 0 0 99999px rgba(0, 0, 0, 0.7);
+        h5 {
+            color: $red;
+            font-size: 14px;
+            margin: 0;
+        }
+        p {
+            margin: 30px 0;
+            font-size: 14px;
+        }
+        .close-modal {
+            color: #bbb;
+            text-decoration: none;
+            float: right;
+            position: absolute;
+            top: 26px;
+            right: 20px
+        }
+        ul {
+            list-style-image: url('../images/list.jpg');
+            li {
+                margin-bottom: 15px;
+                font-size: 14px;
+            }
+        }
+    }
